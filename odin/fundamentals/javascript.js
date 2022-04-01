@@ -180,6 +180,8 @@ const BIRTHDAY = '18.04.1982';
 const age = someCode(BIRTHDAY);
 // Above is the correct answer because birthday is known prior to the execution and is directly written into the code.
 // in contrast, age is evaluated in run-time. Today we have one age, a year after we'll hae another one. It doesnt change through the code execution. But it is "less of a constant" than birthday which never changes!
+
+
 // !!! NUMBERS !!!
 // !!! JAVASCRIPT ARITHMETIC OPERATORS !!!
 /*
@@ -198,6 +200,8 @@ let x = 100 + 50;
 let x = a + b;
 // Example expressions
 let x = (100 + 50) * a;
+
+
 // !!! OPERATORS AND OPERANDS !!!
 // The numbers (in an arithmetic operation) are called operands.
 // The operation (to be performed between the two operands) is defined by an operator
@@ -568,7 +572,7 @@ alert( counter ); // 1
 // The "prefix from" is when the operator goes before the variable ++counter
 // Both statements do the same thing, increase counter by 1
 // There is a different but we can only see it if we use the returned values of ++/--
-// The prefix returns the nwe value while the postfix form returns the old value (prior to increment/decrement)
+// The prefix returns the new value while the postfix form returns the old value (prior to increment/decrement)
 // Example
 /*
 let counter = 1;
