@@ -157,7 +157,7 @@ console.log(badString);
 // The example above just reads out "The revolution will not be televised" because string already as a value!
 
 // !!! SINGLE QUOTES VS DOUBLE QUOTES
-// Single quote ('') or Double quote ("") lines have vary little difference
+// Single quote ('') or Double quote ("") lines have very little difference
 // You should one down to your person preference, however chose one and STICK TO IT because using two different quotes will cause an error
 // const badQuotes = 'What on earth?"; // This is an example of a bad quote because it uses ' and "
 // Both the examples below are allowed
@@ -803,3 +803,318 @@ The precedence of NOT ! is the highest of all logical operators, so
 it always executes first, before && or ||
 */
 // TASKS
+// What is the code below going to output?
+console.log(null || 2 || undefined); // 2 because it is the first truthy value and that is what OR looks for!
+// What will the code below output?
+// alert(alert(1) || 2 || alert(3));
+/*
+The first OR || evaluates its left operand console.log(1) since it is
+undefined, OR goes to the second value
+The second value is 2 which is true so the execution is halted. 2 is returned and 
+then shown by the outer alert
+*/
+// What is this code going to show?
+console.log(1 && null && 2); // null because AND operator finds the first falsy value
+// What will this code show?
+// alert(alert(1) && alert(2));
+/* 
+The call to alert returns undefined
+Because of that && evaluates the left  operand outputs 1 and immediately stops.
+Because undefined is a falsy value. And && looks for the falsy value
+and returns it, so it's done.
+*/
+// What will the result be?
+console.log(null || (2 && 3) || 4); // null is falsy so OR moves on 2 && 3 are both truthy and since 2 is first it takes it
+/* 
+The precedence of AND && is higher than ||, so it executes first.
+The restult of 2 && 3 = 3, so th expression becomes
+null || 3 || 4
+now the result is the first truthy value 3.
+*/
+/*
+Write an if condition to check that age is between 14 and 90 inclusively.
+"Inclusively" means that age can reach the edges 14 or 90.
+*/
+// if (age >= 14 && age <= 90)
+/*
+Write an if condition to check that age is NOT between 14 and 90
+inclusively.
+Create two variants: the first one using NOT !, the second one with
+out it.
+*/
+// if (!(age >= 14 && age <=90))
+// if (age < 14 || age > 90)
+// Which of these alerts are going to execute?
+// What will the results of the expressions be inside
+// if (-1 || 0) alert('first'); // -1 || 0 = -1, truthy!
+// if (-1 && 0) alert('second'); -1 && 0 = 0, falsy
+// if (null || -1 && 1) alert('third'); // Executes, Operator && has a higher precedence than ||, -1 && executes first, null || -1 && 1 -> null || 1 -> 1
+// The first and the third will execute
+let userName = prompt('Whos there?', '');
+if (userName === 'Admin') {
+  let pass = prompt('Password?');
+  if (pass === 'TheMaster') {
+    alert('Welcome!');
+  } else if (pass === '' || pass === null) {
+    alert('Canceled');
+  } else {
+    alert('Wrong password');
+  }
+} else if (userName === '' || userName === null) {
+  alert('Canceled');
+} else {
+  alert('I dont know you');
+}
+
+// !!! MAKING DECISIONS IN YOUR CODE CONDITIONALS !!!
+// programming languages make decisions for example if a player has 0 lives the game ends
+// we'll explore how so-called conditional statements work in JavaScript
+
+// !!! IF...ELSE STATEMENTS !!!
+// This is by far the most common type of conditional in JavaScript
+// Basic syntax
+/*
+if (condition) {
+  code to run if condition is true
+} else {
+  run some other code instead
+}
+*/
+/*
+1. The keyword (if) is followed by parentheses
+2. The condition placed inside the parentheses (typically "is this value bigger than this other value?")
+and tested. The condition makes use of comparison operators and returns
+true or false.
+3. Within the curly braces, we have some code, and it only runs if
+the condition is true in this example.
+4. The keyword else comes next.
+5. Another set of curly braces which inside we have some code and it
+only runs if the condition is not true, or in other words if the
+condition is false.
+*/
+// Real world example of the syntax
+let shoppingDone = false;
+let childsAllowance;
+if (shoppingDone === true) {
+  childsAllowance = 10;
+} else {
+  childsAllowance = 5;
+}
+console.log(childsAllowance); // 5 or false
+// This code always results in the shoppingDone variable to be false!
+// There is a mechanism to fix this issue!
+
+// !!! ELSE IF !!!
+// else if allows us more than two choices and outcomes!
+// using else if, each extra choice requires an additional block to put in between if() {...}
+// and else {...}
+const select = document.querySelector('select');
+const para = document.querySelector('p');
+
+select.addEventListener('change', setWeather);
+
+function setWeather() {
+  const choice = select.value;
+
+  if (choice === 'sunny') {
+    para.textContent =
+      'It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.';
+  } else if (choice === 'rainy') {
+    para.textContent =
+      "Rain is falling outside; take a rain coat and an umbrella, and don't stay out for too long.";
+  } else if (choice === 'snowing') {
+    para.textContent =
+      'The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.';
+  } else if (choice === 'overcast') {
+    para.textContent =
+      "It isn't raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.";
+  } else {
+    para.textContent = '';
+  }
+}
+/*
+1. Here we've got an HTML <select> element allowing us to make different
+weather choices.
+2. In JavaScript, we are storing a reference to both the <select> and
+<p> elements, also adding an event listener to the <select> so that when
+its value is changed, the setWeather() function is ran
+3. When function is run the first variable is called choice to
+the current value selected in the <select> element. All the conditionals
+are else if() {...} execpt for the first one, which is tested in an
+if() {...}
+4. The very last choice is inside the else {...} block, and is basically
+used as a last resort option the code inside it will be run if
+none of the conditions are true. In this choice it serves its purpose
+when nothing is selected or "--Make a choice--"
+*/
+// comparison operators
+// === and !== test if one value is identical to, or not identical to another
+// < and > test if one value is less than or greater than another
+// <= and >= test if one value is less than or equal to, or greater than or equal to another
+/*
+any value that is not false, undefined, null, 0, NaN or empty string ('')
+actually means true when tested as a condition statement.
+*/
+/*
+let cheese = 'Cheddar';
+if (cheese) {
+  console.log('Yay! Cheese available for making cheese on toast.');
+} else {
+  console.log('No cheese on toast for you today.');
+}
+*/
+// Fixing child doing a chore for parent
+/*
+let shoppingDone = false;
+let childsAllowance;
+if (shoppingDone) {
+  childsAllowance = 10;
+} else {
+  childsAllowance = 5;
+}
+*/
+/*
+if (iceCreamVanOutside || houseStatus === 'on fire') {
+  console.log('You should leave the house quickly.');
+} else {
+  console.log('Probably should just stay in then.');
+}
+*/
+
+/// !!! TERNARY OPERATOR !!!
+// ternary or conditional operator is a small bit of syntax that tests a condition and returns one value/expression if it is true, and another if it is false.
+// This can be useful in some situations and can take up less code than if...else block if you have two choices that are chosen between true/false condition
+/*
+( condition ) ? run this code : run this code
+instead
+*/
+// Simple example
+/*
+let greeting = ( isBirthday ) ? 'Happy birthday Mrs. Smith - we hope
+you have a great day!' : 'Good morning Mrs. Smith.';
+*/
+// Here we have a variable called isBirthday
+// if this is true we give our guest a happy birthday message
+// if not we give her the standard daily greeting.
+
+/// !!! SWITCH STATEMENTS !!!
+// Switch statements are good for wanting to set a variable to a certain choice
+// They take a single expression/value as an input, and then look through a number of choices until they find one that matches that value, and executes the corresponding code that goes with it.
+/*
+switch (expression) {
+  case x:
+    run this code 
+    break;
+  
+  case y:
+    run this code instead
+    break;
+  
+  // Include as many cases as you like
+
+  default:
+    actually, just run this code
+}
+*/
+/* 
+Sequence of events that will take place
+1. The expression is evaluated
+2. case x, will be tested against the expression. If matches, the
+code will execute, and the break keyword will end the switch block.
+3. If it does not match x will be skipped and y will be tested
+if y matches the code will execute and exit out of the switch bock.
+4. If none of the cases match the default code block will run.
+*/
+// Set the current day of the week to a variable, with 0 being Sunday and 6 being Saturday
+/*
+const day = new Date().getDay();
+
+switch (day) {
+  case 0:
+    console.log("It's Sunday, time to relax!");
+    break;
+  case 1:
+    console.log('Happy Monday!');
+    break;
+  case 2:
+    console.log("It's Tuesday. You got this!");
+    break;
+  case 3:
+    console.log('Hump day already!');
+    break;
+  case 4:
+    console.log("Just one more day 'til the weekend!");
+    break;
+  case 5:
+    console.log('Happy Friday!');
+    break;
+  case 6:
+    console.log('Have a wonderful Saturday!');
+    break;
+  default:
+    console.log('Something went horribly wrong...');
+}
+*/
+/*
+// Set the student's grade
+const grade = 87;
+
+switch (true) {
+  // If score is 90 or greater
+  case grade >= 90:
+    console.log('A');
+    break;
+  // If score is 80 or greater
+  case grade >= 80:
+    console.log('B');
+    break;
+  // If score is 70 or greater
+  case grade >= 70:
+    console.log('C');
+    break;
+  // If score is 60 or greater
+  case grade >= 60:
+    console.log('D');
+    break;
+  // Anything 59 or below is failing
+  default:
+    console.log('F');
+}
+*/
+// Switch is Evaluated from top to bottom so it will not display C, D, or F.
+// Get number corresponding to the current month, with 0 being January and 11 being December
+/*
+const month = new Date().getMonth();
+
+switch (month) {
+  // January, February, March
+  case 0:
+  case 1:
+  case 2:
+    console.log('Winter');
+    break;
+  // April, May, June
+  case 3:
+  case 4:
+  case 5:
+    console.log('Spring');
+    break;
+  // July, August, September
+  case 6:
+  case 7:
+  case 8:
+    console.log('Summer');
+    break;
+  // October, November, December
+  case 9:
+  case 10:
+  case 11:
+    console.log('Autumn');
+    break;
+  default:
+    console.log('Something went wrong.');
+}
+*/
+// You can put cases into other cases!
+// In this example we are finding the month we are in!
+// We split everything into Winter, Spring, Summer, and Autumn to make things more simple
