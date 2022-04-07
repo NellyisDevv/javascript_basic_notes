@@ -567,6 +567,7 @@ switch (true) {
 }
 
 // EXAMPLE
+/*
 let userName = prompt('Who is there?', '');
 if (userName === 'Admin') {
   let pass = prompt('Password?');
@@ -583,3 +584,4 @@ if (userName === 'Admin') {
   alert('I dont know you!');
 }
 // You should know how to read this out loud and it should make sense in english, make sure you do not forget this!!!
+*/
