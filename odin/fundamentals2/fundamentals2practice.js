@@ -99,8 +99,8 @@ console.log(`${welcomingMessage} ${realUser}`); // "Hello, Christ" the space bet
 
 // EXAMPLE 19
 const title = 'Front';
-const ammount = 242;
-console.log(`${title} ${ammount}`); // When adding strings and numbers together it displays the string and then shows the number
+const amount = 242;
+console.log(`${title} ${amount}`); // When adding strings and numbers together it displays the string and then shows the number
 // "Front 242"
 // Every number coming AFTER the string becomes a string
 

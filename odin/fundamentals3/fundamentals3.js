@@ -62,3 +62,163 @@ const myText = 'I am a string';
 const newString = myText.replace('string', 'yarn');
 console.log(newString);
 // OPTIONAL PARAMETERS
+// Are parameters that are optional meaning you don't have to specify them.
+// If you dont the function will generally adopt some kind of default behavior
+// EXAMPLE can be the array join() function's parameter is optional
+const myArrayy = ['I', 'love', 'chocolate', 'frogs'];
+const madeString = myArrayy.join(' ');
+console.log(madeString); // returns 'I love chocolate frongs'
+// if no parameter is included to specify a joining/delimiting character, a comma is used by default
+const MadeAnotherString = myArray.join();
+console.log(MadeAnotherString);
+// DEFAULT PARAMETERS
+// you can specify default values by adding = after the name of the parameter, followed by the default value
+function hello(name = 'Christ') {
+  console.log(`Hello Welcome Back, ${name}!`);
+}
+hello('Ari'); // Hello Ari
+hello(); // Hello Christ
+hello('Saul');
+// EXAMPLE OF CREATING A FUNCTION
+function coolFunction(name = '') {
+  console.log(`Hello how are you ${name}?`);
+}
+coolFunction('Nelly');
+coolFunction('did you just build another function');
+// ANONYMOUS FUNCTIONS AND ARROW FUNCTIONS
+// an anonymous function is a function without a name
+// you will often see this when a function expects to receive another function as a parameter
+// EXAMPLE
+/*
+1. Let's say you want to run some code when the user types
+into a text box.
+2. To do this you can call the addEventListener() function
+This function expects you to pass it (at least) two parameters.
+3. The name of the event to listen for, which in this case is "keydown"
+4. And a function to run when the event happens
+*/
+/*
+function logKey(event) {
+  console.log(`You pressed "${event.key}".`);
+}
+textBox.addEventListener('keydown', logKey);
+*/
+// Instead of defining a separate logKey() function, you can pass an anonymous function into addEventListener()
+/*
+textBox.addEventListener('keydown', function (event) {
+  console.log(`You pressed "${event.key}".`);
+});
+*/
+// ARROW FUNCTIONS
+// If you pass an anonymous function there is an alternative from you can use.
+// called an arrow function, instead of function(event), you write (event) =>
+/*
+textBox.addEventListener('keydown', (event) => {
+  console.log(`You pressed "${event.key}".`);
+});
+*/
+// If the function only has one line in the curly brackets, you omit the curly brackets
+/*
+textBox.addEventListener('keydown', (event) =>
+  console.log(`You pressed "${event.key}".`)
+);
+*/
+// If the function only takes one parameter, you can also omit the brackets around the parameter
+/*
+textBox.addEventListener('keydown', (event) =>
+  console.log(`You pressed "${event.key}".`)
+);
+*/
+// If your function needs to return a value, and contains only one line, you can omit the return statement
+// In this example we are using the map() method of Array to double every value in the original array
+const originals = [1, 2, 3];
+const doubled = originals.map((item) => item * 2);
+console.log(doubled); // console log shows [2, 4, 6]
+// The map() takes each item in the array in turn, passes it through the given function. Then takes the value returned by that function and adds it to a new array!
+// So in the example above, item => item * 2 is the arrow function equivalent of
+function doubleItem(item) {
+  return item * 2;
+}
+// Use arrow functions, as they can make your code shorter and more readable!
+
+// !!! ARROW FUNCTION LIVE SAMPLE !!!
+// This is an example of the "keydown" example we learned about
+/*
+const textBox = document.querySelector('#textBox');
+const output = document.querySelector('#output');
+
+textBox.addEventListener(
+  'keydown',
+  (event) => (output.textContent = `You pressed "${event.key}".`)
+);
+*/
+// !!! FUNCTION SCOPE AND CONFLICTS !!!
+/*
+1. When you create a function, the variables and other things
+defined inside the function are inside their own scope.
+2. This means they are locked away in their own separate
+compartments, unreachable from code outside the functions
+*/
+// The top level outside all your functions is called the global scope.
+// Values defined in the global scope are accessible from everywhere in the code.
+/*
+Script does this for various reasons
+1. security and organization
+2. Sometimes, you don't want variables to be accessible
+from everywhere in the code.
+*/
+/*
+1. Imagine you have an HTML file calling in two external JAVASCRIPT
+files, and both of them have a variable and a function defined that
+use the same name.
+2. If you wanted to call this function it will only get the function
+from the first javascript file but not the second. This is because 
+that function has already been declared in the first file. If this 
+function is a constant it can't be reassigned!
+3. keeping parts of your code locked away in functions avoids such
+problems, and is considered the best practice.
+*/
+// function scopes should have there own enclosures and only have access to the things inside their enclosures!
+
+// !!! GOTO FUNCTION SCOPE JS PRACTICE !!!
+
+// !!! ANOTHER EXAMPLE OF PLAYING WITH FUNCTIONS !!!
+function favoriteAnimal(animal) {
+  console.log(animal + 'is my favorite animal!');
+}
+favoriteAnimal('The goat ');
+favoriteAnimal('The panda ');
+
+// !!! FUNCTION RETURN VALUES !!!
+// The last essential concept about functions are return values
+// Some functions don't return significant value's but others do
+
+// !!! WHAT ARE RETURN VALUES? !!!
+// Return values are just values that a function returns when it has completed
+// We have also seen return values many times across these lessons
+// EXAMPLE
+const textMessage = 'The weather is cold';
+const newMessage = textMessage.replace('cold', 'warm');
+console.log(newMessage); // console log shows "The weather is warm"
+// The replace() string function takes a string
+// replaces one substring with another, and returns a new string with the replacement made
+// replace() function is invoked on the textMessage string, and is passed two parameters
+// 1. the substring to find ('cold')
+// 2. the string to replace it with ('warm')
+// Some functions don't return any value these are void or undefined values
+
+// !!! USING RETURN VALUES IN YOUR OWN FUNCTIONS !!!
+// To return a value from a custom function, you need to use the "return" keyword
+// The random() function takes one parameter (a whole number) and it returns a whole random number between 0 and that number
+function random(number) {
+  return Math.floor(Math.random() * number);
+}
+// This could be written as follows
+function random(numberr) {
+  const result = math.floor(Math.randon() * numberr);
+  return result; // here return is written at the end its much faster to do it the first way than this way!
+}
+// The function calls on the line are run first
+// then their return values substituted for the function calls, before the line itself is then executed
+
+// !!! GOTO ACTIVE LEARNING FUNCTION-LIBRARY !!!
