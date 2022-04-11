@@ -222,3 +222,79 @@ function random(numberr) {
 // then their return values substituted for the function calls, before the line itself is then executed
 
 // !!! GOTO ACTIVE LEARNING FUNCTION-LIBRARY !!!
+
+// !!! PARAMETERS AND ARGUMENTS !!!
+function myFavoriteAnimal(animal) {
+  console.log(animal + ' is my favorite animal!');
+}
+myFavoriteAnimal('Dove');
+myFavoriteAnimal('Leviathan');
+// Parameters are the items listen between the parentheses in the function declaration in this case th parameter is (animal)
+// The parameter animal can be named anything like x, pet, or blah but its better to name it animal so that someone reading the code has context
+// By doing myFavoriteAnimal() we are telling JavaScript that we ill send some value to that function
+// This means that animal is just a placeholder for some future value
+// In this example its a placeholder for myFavoriteAnimal('Dove')
+// We are calling the myFavoriteAnimal function and passing the value Dove inside the function.
+// Dove is out argument
+// "Please send 'Dove" to the myFavoriteAnimal function and use 'Dove' wherever the 'animal' placeholder is."
+// Because parameter is flexible you can declare any animal to be out favorite. For example, leviathan!
+
+// !!! FUNCTIONS !!!
+// Functions are the main "building bocks" of the program They allow the code to be called many times without repetition
+// We have already seen build in functions like alert(message), prompt(message, default)m and confirm(question)
+function showMessage() {
+  alert('Hello Everyone!');
+}
+// If we ever need to do the task showMessage() we don't have to duplicate the code instead we can just call the function
+// showMessage()
+
+// !!! LOCAL VARIABLES !!!
+// A variable declared inside a function is only visible inside that function
+function anotherMessage() {
+  let message = "Hello, I'm JavaScript"; // local variable and not global meaning it can only be seen by this function!
+  alert(message);
+}
+// anotherMessage(); Displays "Hello, I'm JavaScript!"
+// alert(message); Shows an error because the variable is only local to the function
+
+// !!! OUTER VARIABLES !!!
+let userName = 'Christ';
+function userMessage() {
+  let task = 'Hello, ' + userName;
+  alert(task);
+}
+// show userMessage() Hello, Christ
+// The function has full access to the outer variable meaning it can modify it as well
+function userMessage2() {
+  userName = 'John'; // (1) changed the outer variable
+  let task = 'Hello, ' + userName;
+  alert(task);
+}
+// alert(username); It's declared in the global as "Christ"
+// userMessage2(); Will show "Hello, John"
+// The outer variable is only used if there's no local one
+// If a same-named variable is declared inside the function then it shadows the outer one
+// In this example below the function uses the local userName, the outer one is ignored
+function userMessage3() {
+  let userName = 'Zoar'; // declare a local variable
+  let task = 'Hello, ' + userName;
+  alert(task);
+}
+// userMessage3() shows "Hello, Zoar"
+// the userName is still 'Christ' because userName 'Zoar' was declared only locally and not globally!
+
+// !!! PARAMETERS !!!
+// We can pass arbitrary data to functions using parameters
+// In the example below, the function as two parameters "from" and "text"
+let from = 'Samuel';
+let text = "What's up?";
+function displayMessage(from, text) {
+  alert(from + ': ' + text);
+}
+function showMessage(from, text) {
+  // parameters: from, text
+  alert(from + ': ' + text);
+}
+
+showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
+showMessage('Ann', "What's up?"); // Ann: What's up? (**)
