@@ -286,15 +286,269 @@ function userMessage3() {
 // !!! PARAMETERS !!!
 // We can pass arbitrary data to functions using parameters
 // In the example below, the function as two parameters "from" and "text"
-let from = 'Samuel';
-let text = "What's up?";
 function displayMessage(from, text) {
-  alert(from + ': ' + text);
+  alert(from + ': ' + text); // these two parameters can be changed! the ': ' just means that there are two empty strings!
 }
 function showMessage(from, text) {
   // parameters: from, text
   alert(from + ': ' + text);
 }
 
-showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
-showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+// showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
+// showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+// showMessage('Christ', 'The Savior!');
+// When a function is called in lines (*) (**) the given values are copied to local values, then the functions use them.
+let person; // This string is undefined or null because it has nothing in it and I want to pass information through it!
+function viewWork(from, text) {
+  let person = 'Matthew'; // Matthew is a variable declared locally meaning it can't be used anywhere else but inside of this function
+  person = '*' + person + '*'; // Make from look nicer!
+  alert(person + ': ' + text); // alert person which is (Matthew) + ': ' which is empty string + text which is defined when declaring this function
+}
+// viewWork(person, 'Hello!'); // person is already defined as (Matthew), "Hello!" is the text and will go inside of the empty string ': '
+// viewWork(person, 'You are awesome') // displays Matthew, You are awesome
+// When a value is passed through a function it is also called an argument
+/*
+1. A parameter is the variable listed inside the parentheses in the
+function declaration. (it's a declaration time term)
+2. An argument is the value that is passed to the function when
+it is called. (it's a call time term)
+*/
+// We declare functions listing their parameters, then call them passing arguments
+// In the example above the function "viewWork" is the function
+// Then the two arguments: from and 'You are awesome'
+
+// !!! DEFAULT VALUES !!!
+// If a function is called, but an argument is not provided, then the corresponding value becomes "undefined"
+// For instance viewMessage(from, text) can be called with a single argument
+// viewWork(); has no arguments going through the function so it will just display  *Matthew*: undefined because the argument is not defined!
+// the value that is not defined above is the "text"
+// We can specify the "default" (to use if omitted) value for a parameter in the function declaration, using =
+function anotherMessage(person, text = 'no text was given!') {
+  person = 'Elizabeth';
+  alert(person + ': ' + text);
+}
+// anotherMessage(); // Elizabeth: no text was given!
+/* in the example above 'no text was given!' is a string, but it can
+be a more complex expression, which is only evaluated and assigned
+if the parameter is missing. This is possible.
+*/
+/*
+function anotherMessage(person, text = anotherFunction()) {
+ anotherFunction() is only executed if no text is given!
+ its results becomes the value of the text
+}
+*/
+// In the example above, anotherFunction() isn't called if the text parameter is provided
+// ALTERNATIVE DEFAULT PARAMETERS
+// Sometimes it makes sense to assign default values for parameters not in the function declaration, but at a later stage
+// we can check if the parameter is passed during the function execution, by comparing it with undefined
+function revealMessage(text) {
+  // ...
+  if (text === undefined) {
+    // if the parameter is missing
+    text = 'empty message';
+  }
+  alert(text);
+}
+// revealMessage(); this will alert "empty message"
+// But we can also use the || (OR) operator
+function showMyMessage(text) {
+  // if the text is undefined or otherwise falsy, set it to 'empty'
+  text = text || 'empty';
+  alert(text);
+}
+// showMyMessage(); will display "empty"
+// Modern JavaScript engines support the "nullish coalescing operator" (??), it's better when most values are falsy, such as 0
+function showCount(count) {
+  // if count is undefined or null, show "unknown"
+  alert(count ?? 'unkown');
+}
+// showCount(0); will display 0
+// showCount(null); will display "unkown" because its a null!
+// showCount(); will display "unknown" because its an empty string or "undefined"
+
+// !!! RETURNING A VALUE !!!
+// A function can return a value back into the calling code as the result
+// Example of a function that sums two values
+function sum(a, b) {
+  return a + b;
+}
+let result = sum(3, 2); // changing these two numbers will change the result right now the result is 5 because 3 + 2 is equal to 5
+// alert(result); // 5
+// return can be in any place of the function, but when the execution reaches it the function will stop
+// the value is then returned to the calling code (assigned to result above)
+// There may be occurrences of return in a single function for example
+function checkAge(age) {
+  if (age >= 18) {
+    return true;
+  } else {
+    return confirm('Do you have permission from your parents?');
+  }
+}
+let age = prompt('How old are you?');
+if (checkAge()) {
+  alert('Access granted');
+} else {
+  alert('Acess denied');
+}
+// note with the code above there is a minor issue!
+/*
+the program asks what age you are and if you put 18 it will still
+ask if you have permission from your parents the same will happen if 
+you put your age as 120 years old!
+*/
+// its also possible to return without a value. That causes the function to exit immediately
+function showMovie(age) {
+  if (!checkAge(age)) return;
+}
+alert('showing you the movie');
+// in the code above if checkAge(age) returns false, then showMovie won't proceed to the alert
+// A function with an empty return or without it returns undefined
+// If a function does not return a value, it is the same as if it returns undefined
+function doNothing() {
+  /* empty */
+}
+// alert(doNothing() === undefined); // true
+// An empty return is also the same as return undefined
+function doNothing() {
+  return;
+}
+// alert(doNothing() === undefined); // is also true!
+// Remember never add a newline between return and the value
+// if you have a long return value you should start it at the same line as return or at least put the opening parentheses there as follows
+/*
+return (
+  some + long + expression
+  + or +
+  whatever * f(a) + f(b)
+)
+*/
+// This long return value will work just as we expect it to
+
+/// !!! NAMING A FUNCTION !!!
+// Functions are actions. So their name is usually a verb
+// It should be brief, as accurate as possible and describe what the function does
+// It is a widespread practice to start a function with a verbal prefix which vaguely describes the action
+// there must be an agreement within the team on the meaning of prefixes
+// for instance functions that start with "show" usually show something
+/*
+Function starting with...
+"get..." - return a value
+"calc..." - calculate something
+"create..." - create something
+"check..." - check something and return a boolean
+*/
+/*
+showMessage(..) // shows a message
+getAge (..) // returns the age (gets it somehow)
+calcSum(..) // calculates a sum and returns the result
+createForm(..) // creates a form (and usually returns it)
+checkPermission(..) // checks a permission, returns true/false
+*/
+// A function should do exactly what is suggested by its name, no more!
+// Two independent actions usually deserve two functions, even if they are usually called together (in that case we can make a 3rd function that calls those two)
+// Common examples of breaking this rule
+/*
+getAge - would be bad if it shows an alert with the age (should only get)
+createForm - would be bad if it modifies the document, adding a form to it (should only create uit and return)
+checkPermission - would be bad if it displays the access granted/denied message (should only perform the check and return the result)
+*/
+// Sometimes functions that are used very often have ultrashort names
+// for example in jQuery framework it defines a function with $. The Loadash library has its core function named _
+
+// !!! FUNCTIONS == COMMENTS !!!
+// Functions should be short and do exactly one thing!
+// if that thing is big, maybe it's worth to split the function into a few smaller functions.
+// Sometimes following this rule may not be that easy, but it's definitely a good thing.
+// A separate function is not only easier to test and debug it's very existence is a great comment!
+// Compare the two functions below showPrimes(n) Each one outputs prime numbers up to n.
+// First variant
+function showPrimes(n) {
+  nextPrime: for (let i = 2; i < n; i++) {
+    for (let j = 2; j < i; j++) {
+      if (i % j == 0) continue nextPrime;
+    }
+    alert(i); // a prime
+  }
+}
+// The second variant uses an additional function isPrime(n) to test for primality
+function showPrimes(n) {
+  for (let i = 2; i < n; i++) {
+    if (!isPrime(i)) continue;
+
+    alert(i); // a prime
+  }
+}
+
+function isPrime(n) {
+  for (let i = 2; i < n; i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
+/*
+The second variant should be easier to understand. Instead of the code
+piece we see a name of an action (isPrime) Sometimes people refer to 
+such code as self-describing.
+So functions can be created even if we don't intend to reuse them.
+they basically structure the code and make it more readable.
+*/
+
+// !!! TASKS !!!
+// Is there a difference between these two examples if "else" is removed?
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return confirm('Did parent allow you?');
+  }
+}
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  }
+  return confirm('Did parent allow you?');
+}
+// There is no difference in behavior between these two examples!
+// The only difference I can see is that the function with else included is a bit easier to read in my opinion but the second one is shorter!
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return confirm('Did parent allow you?');
+  }
+}
+// Rewrite this to perform the same, but without if, in a single line
+// make two variants one using the (?) operator
+// and another using the OR || operator
+// This first example is using the (?) operator
+function checkAge(age) {
+  return age > 18 ? true : confirm('Did parents allow you?');
+}
+// This second example is using the (||) OR operator
+function checkAge(age) {
+  return age > 18 || confirm('Did parents allow you?'); // this is saying return age that is higher than 18 OR confirm "Did parents allow you?"
+}
+// The second way is the shortest way to write this out
+// Write a function min(a,b) which returns the least of two numbers a and b
+/*
+for instance 
+min(2, 5) == 2
+min(3, -1) == -1
+min(1, 1) == 1
+*/
+// This first solution is using (if)
+function min(a, b) {
+  if (a < b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+// This second solution is using the (?) operator
+function min(a, b) {
+  return a < b ? a : b;
+}
+// I am not sure what the (?) operator means I need to research what it does again
+
+// !!! FOLLOW TO THE FUNDAMENTS 3 PART 2 FILE !!!
