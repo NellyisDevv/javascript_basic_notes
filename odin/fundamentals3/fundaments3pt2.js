@@ -77,3 +77,47 @@ ask(
 // Such functions are not accessible outside of ask (because they are not assigned to variables), but that's just what we want in this example
 
 // !!! FUNCTION EXPRESSION VS FUNCTION DECLARATION !!!
+// A function, declared as a separate statement, in the main code flow.
+function sum(a, b) {
+  return a + b;
+}
+// A function expression is created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression"
+let summ = function (a, b) {
+  return a + b;
+};
+// Function declarations can be called earlier than it is defined while Function Expressions can't because it's execution flow passes to right ride side of the assignment
+// Function Expressions are created when the execution reaches them
+let age = prompt('What is your age?');
+let welcome;
+if (age < 18) {
+  welcome = function () {
+    alert('Hello!');
+  };
+} else {
+  welcome = function () {
+    alert('Greetings!');
+  };
+}
+welcome();
+// We could even simplify this code even more by using the (?) operator
+let years = prompt('What is your age?');
+let welcomeHome =
+  age < 18
+    ? function () {
+        alert('Hello!');
+      }
+    : function () {
+        alert('Greetings!');
+      };
+welcome();
+// Although the logic on this one is a bit harder for me to understand because I still am not sure what the (?) operator fully means
+// When to choose Function Declaration versus Function Expression?
+/*
+1. When we need to declare a function, the first to consider is Function
+Declaration syntax. It gives more freedom in how to organize the code.
+2. Function Declaration is also better for readability, and it's easier
+to look up.
+3. But if a Function Declaration does not suit us for some reason, or
+we need a conditional declaration, then Function Expression should be
+used.
+*/

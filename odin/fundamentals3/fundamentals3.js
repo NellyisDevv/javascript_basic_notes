@@ -67,7 +67,7 @@ console.log(newString);
 // EXAMPLE can be the array join() function's parameter is optional
 const myArrayy = ['I', 'love', 'chocolate', 'frogs'];
 const madeString = myArrayy.join(' ');
-console.log(madeString); // returns 'I love chocolate frongs'
+console.log(madeString); // returns 'I love chocolate frogs'
 // if no parameter is included to specify a joining/delimiting character, a comma is used by default
 const MadeAnotherString = myArray.join();
 console.log(MadeAnotherString);
@@ -294,8 +294,8 @@ function showMessage(from, text) {
   alert(from + ': ' + text);
 }
 
-// showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
-// showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+// showMessage('Solomon', 'Hello!'); // Solomon: Hello! (*)
+// showMessage('Solomon', "What's up?"); // Solomon: What's up? (**)
 // showMessage('Christ', 'The Savior!');
 // When a function is called in lines (*) (**) the given values are copied to local values, then the functions use them.
 let person; // This string is undefined or null because it has nothing in it and I want to pass information through it!
