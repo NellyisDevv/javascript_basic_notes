@@ -272,17 +272,6 @@ let result = sum(3, 2);
 // alert(result);
 
 // EXAMPLE 31
-function add7(a, additional) {
-  additional = 7;
-  return a + additional;
-}
-let overallResult = add7(20);
-alert(overallResult);
-// THIS IS THE FIRST PRACTICE QUESTION FOR ODIN PROJECT!!!!!
-// I'M SO PROUD OF YOU FIRST LINE OF CODE YOU DID WITHOUT ANY HELP!!!
-// THANK YOU JESUS!!!!!
-
-// EXAMPLE 31
 function checkAge(age) {
   if (age >= 18) {
     return true;
@@ -368,3 +357,141 @@ let sayHi = function () {
 // It allow's us to make new functions in the middle of any expression
 
 // EXAMPLE 36
+function ask(question, yes, no) {
+  if (confirm(question)) yes();
+  else no();
+}
+function showOk() {
+  alert('You agreed.');
+}
+function showCancel() {
+  alert('You cancled the execution.');
+}
+ask('Do you agree?', showOk, showCancel);
+/* 
+1. The arguments showOK and showCancel are called "callback" 
+functions or just callbacks
+2. The idea is we pass a function and expect it to be "called back"
+later if necessary
+3. In our case, showOk becomes the callback for "yes" answer, and
+showCancel becomes the callback for "no" answer!
+*/
+
+// EXAMPLE 37
+// Function Expressions to write the same function much shorter
+function ask(question, yes, no) {
+  if (confirm(question)) yes();
+  else no();
+}
+// IMPORTANT REMEMBER TO ALWAYS INCLUDE , BETWEEN ARGUMENTS
+ask(
+  'Do you agree?',
+  function () {
+    alert('You agreed.');
+  },
+  function () {
+    alert('You canceled the execution');
+  }
+);
+/*
+1. Here functions are declared right inside the ask(...) call
+2. They have no name, so they are called anonymous!
+3. Such functions are not accessible outside of ask (because they
+  are not assigned to variables)
+*/
+
+// EXAMPLE 38
+let years = prompt('What is your age?');
+let welcome;
+if (years < 18) {
+  welcome = function () {
+    alert('Hello!');
+  };
+} else {
+  welcome = function () {
+    alert('Greetings!');
+  };
+}
+// You can even write this better with the (?) operator
+let year = prompt('What year is it?');
+let currentYear =
+  year < 2020
+    ? function () {
+        alert('You are behind 2020');
+      }
+    : function () {
+        alert('You are ahead of 2020');
+      };
+welcome();
+
+// EXAMPLE 39
+/*
+1. When we need to declare a function, the first to consider is Function
+Declaration syntax. It gives more freedom in how to organize the code.
+2. Function Declaration is also better for readability, and it's easier
+to look up.
+3. But if a Function Declaration does not suit us for some reason, or
+we need a conditional declaration, then Function Expression should be
+used.
+*/
+
+// !!! ODIN PROJECT PRACTICE QUESTIONS !!!
+// QUESTION ONE
+function add7(a, additional) {
+  additional = 7;
+  return a + additional;
+}
+let overallResult = add7(20);
+alert(overallResult);
+// THIS IS THE FIRST PRACTICE QUESTION FOR ODIN PROJECT!!!!!
+// I'M SO PROUD OF YOU FIRST LINE OF CODE YOU DID WITHOUT ANY HELP!!!
+// THANK YOU JESUS!!!!!
+
+// QUESTION TWO
+function multi(valueOne, valueTwo) {
+  valueResult = valueOne * valueTwo;
+  return valueResult;
+}
+let multiResult = multi(3, 3);
+alert(multiResult);
+// THIS IS THE SECOND PRACTICE QUESTION FOR ODIN PROJECT
+// PRETTY EASY SO FAR GREAT JOB!
+
+// QUESTION THREE
+/*
+Write a function called capitalize that takes a string
+and returns that string with only the first letter capitalized.
+Make sure that it can take strings that are lowercase, UPPERCASE
+or BoTh.
+*/
+function capitalize() {
+  let string = 'grace';
+  let newString = string.toUpperCase()[0];
+  return newString;
+}
+console.log(capitalize());
+
+// QUESTION FOUR
+/*
+Write a function called lastLetter that takes a string
+ and returns the very last letter of that string
+*/
+function lastLetter() {
+  let string = 'grace';
+  let lastLetter = str.slice(-1);
+  return lastLetter;
+}
+console.log(lastLetter());
+/* THIS IS HOW YOU WOULD WRITE THE JAVASCRIPT FOR RETURNING 
+THE LAST LETTER
+*/
+
+/*
+Overall I think you have a very good understanding of javascript
+now what I want to do is go over some basic javascript on
+freecodecamp and maybe on some other sites to make sure I fully
+have a great fundamentals of the basics before moving on to making 
+projects or even moving on to learn more difficult logic!
+*/
+
+// GREAT JOB NELLY!!!!
