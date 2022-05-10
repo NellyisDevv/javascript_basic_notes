@@ -41,7 +41,7 @@ console.log(thirdString); // Console log will show I,Love,Chocolate,Frogs
 function hello(name = 'Christ') {
   console.log(`Hello Welcome Back, ${name}!`);
 }
-hello('Ari');
+hello('Korah');
 hello();
 hello('Saul');
 

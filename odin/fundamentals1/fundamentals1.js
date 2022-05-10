@@ -1,6 +1,5 @@
 console.log("Hello World!");
 
-
 // !!!BASIC VARIABLE INFORMATION NOTES!!!
 // console.log("Testing console log!");
 /*
